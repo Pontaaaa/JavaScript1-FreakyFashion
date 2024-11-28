@@ -42,10 +42,10 @@ router.post('/', upload.single('image'), function (req, res) {
       VALUES (@name, @description, @image, @brand, @sku, @price, @publicationDate, @slug, @isNew)
     `).run(product);
 
-    res.status(201).json({ message: "Produkten har lagts till" });
+    res.status(201).json({ message: "Produkten är tillagd" });
   } catch (error) {
     if (error.code === 'SQLITE_CONSTRAINT_UNIQUE') {
-      res.status(400).json({ error: "Det finns redan en produkt med detta SKU" });
+      res.status(400).json({ error: "Denna SKU används redan" });
     }
   }
 });

@@ -42,7 +42,7 @@ loadProductsButton.addEventListener('click', (event) => {
           event.preventDefault();
           const productId = trashIcon.getAttribute('data-id');
 
-          const userConfirmed = confirm("Är du säker på att du vill ta bort den här produkten?");
+          const userConfirmed = confirm("Vill du verkligen ta bort produkten?");
           
           if (userConfirmed) {
             fetch(`/admin/products/api/products/${productId}`, { method: 'DELETE' })

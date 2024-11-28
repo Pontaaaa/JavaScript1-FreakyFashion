@@ -139,7 +139,7 @@ html {
   
   .image-grid-image {
     max-width: 100%;
-    height: auto;
+    height: 50%;
     border: 4px white solid;
     background-color: lightcyan;
   }
