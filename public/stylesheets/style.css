@@ -275,6 +275,45 @@ html {
     width: 100%;
     padding: 20px;
   }
+
+  form div {
+    margin-bottom: 10px;
+  }
+  
+  label {
+    text-align: left;
+    margin-bottom: 10px;
+    font-weight: bold;
+    width: 100%;
+  }
+  
+  .newsletter {
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+  }
+  
+  .newsletter label {
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .buy-button {
+    background-color: #ffffff;
+    padding: 5px 60px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+  }
+  
+  .buy-button:hover {
+    background-color: #e0e0e0;
+  }
   
   .product-details-container {
     margin-top: 10px;
@@ -350,45 +389,6 @@ html {
   
   form {
     max-width: 100%;
-  }
-  
-  form div {
-    margin-bottom: 10px;
-  }
-  
-  label {
-    text-align: left;
-    margin-bottom: 10px;
-    font-weight: bold;
-    width: 100%;
-  }
-  
-  .newsletter {
-    display: flex;
-    margin-top: 10px;
-    align-items: center;
-  }
-  
-  .newsletter label {
-    margin-top: 10px;
-    margin-left: 5px;
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-  }
-  
-  .buy-button {
-    background-color: #ffffff;
-    padding: 5px 60px;
-    border-radius: 5px;
-    margin-bottom: 30px;
-  }
-  
-  .buy-button:hover {
-    background-color: #e0e0e0;
   }
   
   @media (min-width: 640px) {
