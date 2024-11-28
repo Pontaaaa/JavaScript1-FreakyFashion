@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script
+      src="https://kit.fontawesome.com/2c28b0065e.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a href="/"
+          ><img src="/images/FR.PNG" alt="freakyfashion logo" class="logo"
+        /></a>
+        <form class="search-form">
+          <div class="search-container">
+            <input
+              type="text"
+              name="q"
+              placeholder="Sök produkt"
+              class="search-input"
+            />
+            <button type="submit" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </div>
+        </form>
+        <a href="#" class="favorites-icon">
+          <i class="fa-solid fa-heart"></i>
+        </a>
+        <a href="#" class="basket-icon">
+          <i class="fa-solid fa-bag-shopping"></i>
+        </a>
+        <nav>
+          <ul>
+            <li><a href="#">Nyheter</a></li>
+            <li><a href="#">Kategorier</a></li>
+            <li><a href="#">Topplistan</a></li>
+            <li><a href="#">Rea</a></li>
+            <li><a href="#">Kampanjer</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <div class="product-details-container">
+          <div class="details-product-image-container">
+            <% if (product.isNew) { %>
+            <div class="new-badge">Nyhet</div>
+            <% } %>
+            <img
+              src="<%= product.image %>"
+              alt="<%= product.name %>"
+              class="details-product-image"
+            />
+            <div class="details-favorite-icon">
+              <i class="fa-solid fa-heart"></i>
+            </div>
+          </div>
+          <div class="details-product-info">
+            <h1 class="details-product-title"><%= product.name %></h1>
+            <p class="details-product-brand"><%= product.brand %></p>
+            <p class="details-product-description">
+              <%= product.description %>
+            </p>
+            <p class="details-product-price"><%= product.price %> SEK</p>
+            <button class="add-to-cart-button">Lägg i varukorg</button>
+          </div>
+        </div>
+        <div class="carousel-container">
+          <h2>Liknande produkter</h2>
+          <div
+            id="carouselExample"
+            class="carousel slide"
+            data-bs-ride="false"
+            data-bs-interval="false"
+          >
+            <div class="carousel-inner">
+              <% for (let i = 0; i < similarProducts.length; i += 3) { %>
+              <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+                <div class="row">
+                  <% for (let j = i; j < i + 3 && j < similarProducts.length;
+                  j++) { %>
+                  <div class="col-md-4">
+                    <a
+                      href="/products/<%= similarProducts[j].slug %>"
+                      class="similar-product-card"
+                    >
+                      <img
+                        src="<%= similarProducts[j].image %>"
+                        class="d-block w-100"
+                        alt="<%= similarProducts[j].name %>"
+                      />
+                      <div class="similar-product-info">
+                        <span class="similar-product-title"
+                          ><%= similarProducts[j].name %></span
+                        >
+                        <span class="similar-product-price"
+                          ><%= similarProducts[j].price %> SEK</span
+                        >
+                      </div>
+                      <p class="similar-product-brand">
+                        <%= similarProducts[j].brand %>
+                      </p>
+                    </a>
+                  </div>
+                  <% } %>
+                </div>
+              </div>
+              <% } %>
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExample"
+              data-bs-slide="prev"
+            >
+              <span class="fa-solid fa-arrow-left" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExample"
+              data-bs-slide="next"
+            >
+              <span class="fa-solid fa-arrow-right" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+        <div class="info-container">
+          <div class="info-item">
+            <i class="fa-solid fa-earth-americas"></i>
+            <p>Gratis frakt och returer</p>
+          </div>
+          <div class="info-item">
+            <i class="fa-solid fa-jet-fighter"></i>
+            <p>Expressfrakt</p>
+          </div>
+          <div class="info-item">
+            <i class="fa-solid fa-shield-halved"></i>
+            <p>Säkra betalningar</p>
+          </div>
+          <div class="info-item">
+            <i class="fa-regular fa-face-smile"></i>
+            <p>Nyheter varje dag</p>
+          </div>
+        </div>
+      </main>
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingShopping">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseShopping"
+              aria-expanded="true"
+              aria-controls="collapseShopping"
+              >Shopping</button>
+          </h2>
+          <div
+            id="collapseShopping"
+            class="accordion-collapse collapse show"
+            aria-labelledby="headingShopping"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <ul>
+                <li><a href="#">T-shirts</a></li>
+                <li><a href="#">Hoodies</a></li>
+                <li><a href="#">Toppar</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingMinaSidor">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseMinaSidor"
+              aria-expanded="false"
+              aria-controls="collapseMinaSidor"
+            >
+              Mina Sidor
+            </button>
+          </h2>
+          <div
+            id="collapseMinaSidor"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingMinaSidor"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <ul>
+                <li><a href="#">Mitt konto</a></li>
+                <li><a href="#">Beställningar</a></li>
+                <li><a href="#">Returnera artikel</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingKundtjanst">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseKundtjanst"
+              aria-expanded="false"
+              aria-controls="collapseKundtjanst"
+            >
+              Kundtjänst
+            </button>
+          </h2>
+          <div
+            id="collapseKundtjanst"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingKundtjanst"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <ul>
+                <li><a href="#">Kontakta oss</a></li>
+                <li><a href="#">Köpvillkor</a></li>
+                <li><a href="#">Returpolicy</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-section-wrapper">
+        <div class="bottom-list-container">
+          <div class="bottom-list-section" id="shoppingList">
+            <h2>Shopping</h2>
+            <ul>
+              <li><a href="#">T-shirts</a></li>
+              <li><a href="#">Skor</a></li>
+              <li><a href="#">Hoodies</a></li>
+            </ul>
+          </div>
+          <div class="bottom-list-section" id="myPagesList">
+            <h2>Mina sidor</h2>
+            <ul>
+              <li><a href="#">Mitt konto</a></li>
+              <li><a href="#">Beställningar</a></li>
+              <li><a href="#">Returnera artikel</a></li>
+            </ul>
+          </div>
+          <div class="bottom-list-section" id="customerServiceList">
+            <h2>Kundtjänst</h2>
+            <ul>
+              <li><a href="#">Kontakta oss</a></li>
+              <li><a href="#">Köpvillkor</a></li>
+              <li><a href="#">Returpolicy</a></li>
+            </ul>
+          </div>
+        </div>
+        <footer class="footer">
+          <p>© 2024 Freaky Fashion</p>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
